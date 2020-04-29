@@ -6,7 +6,7 @@ using namespace std;
 
 
 //There can only be a max of 100 orders
-const int MAXCHAR = 100;
+const int MAX_ORDERS = 100;
 
 //Display 5 indexes at a time
 const int MAX_ITEMS = 5;
@@ -18,6 +18,7 @@ enum {OVER_GRIPS, RACKET_STRINGS, TENNIS_SHOES, TENNIS_BALLS, TENNIS_ACC, FFL_OR
     2. 6: Used to resume the fulfillment process from the customer...it makes the order after going through all levels
     3. 7:
 */
+
 //Function Processes
 void fulfillment_proc(SEMAPHORE &, int *);
 void parent_cleanup(SEMAPHORE &, int);
