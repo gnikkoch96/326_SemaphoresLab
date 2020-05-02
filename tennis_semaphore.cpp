@@ -38,7 +38,7 @@
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #include "semaphore.h"
-#include <semaphore.h>
+#include "shipment.h"
 
 using namespace std;
 
@@ -185,7 +185,7 @@ void fulfillment_proc(SEMAPHORE &sem, int *shmITEM){
         }
 
         //Print out order for customer
-        cout << "====ORDER CONFIRMATION (Order " << ++order_count << "/1000)====" << endl;
+        cout << "##################ORDER CONFIRMATION (Order " << ++order_count << "/1000)##################" << endl;
         cout << "Customer ID: " << customer_id << endl;
         cout << "Over Grips: " << *(shmITEM + min_index + 1) << endl;
         cout << "Racket Strings: " << *(shmITEM + min_index + 2) << endl;
@@ -285,6 +285,7 @@ void customer_proc(SEMAPHORE &sem, int *shmITEM, int customer_id){
             *(shmITEM + min_index + i) = data[i];
         }
 
+        //Not sure if this is actually needed
         sem.P(ADDCUSTID); //only allows one process to enter their customer ID (needed this for our implementation)
 
         *(shmITEM + min_index) = customer_id;
