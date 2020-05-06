@@ -46,7 +46,7 @@ using namespace std;
 //There can only be a max of 100 orders
 const int MAX_ORDERS = 100;
 
-const int
+
 //Semaphore Variables
 enum {SEM1,SEM2,SEM3};
 
@@ -54,13 +54,14 @@ enum {SEM1,SEM2,SEM3};
 int main(){
     //Creation of Semaphores (and initialization)
     SEMAPHORE sem(3);
-
+	int children_count = 0;
 	//Child Creation
 	int num_of_children = 2;
 
 	int pid = 1;
     if(pid){
         for(int i = 0; i < num_of_children; i++){
+		++children_count;
             pid = fork();
             if(pid == 0){ //Process Two
                 if(children_count == 1){
@@ -71,7 +72,7 @@ int main(){
 
                     cout << "Process 2 Finished" << endl;
                 }else if(children_count == 2){ //Process Three
-                    sem.V(SEM3);
+                    //sem.V(SEM3);
                     sem.V(SEM3);
                     sem.P(SEM1);
                     sem.P(SEM2);
@@ -99,6 +100,5 @@ int main(){
 
 
 
-}
 
 
